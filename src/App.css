@@ -5,16 +5,54 @@ body{
   padding: 0;
   margin: 0;
   background: #EDF4FF;
+
+}
+html {
+  scroll-behavior: smooth;
 }
 .App {
   padding: 0;
   text-align: center;
   background: #EDF4FF;
 }
-
+.top-background{
+  background: rgb(142,170,255);
+  background: linear-gradient(257deg, rgba(142,170,255,1) 0%, rgba(86,166,255,1) 100%);
+}
 h1{
   font-family: 'Oswald', sans-serif;
 }
+
+.button-style{
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+  padding-left: 75px;
+  padding-right: 75px;
+  text-decoration: none;
+
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-color: white;
+  background: none;
+  border-radius: 15px;
+  border-width: 3px;
+  border-style: solid;
+  transition: 0.2s;
+  font-weight: 600;
+  color: white;
+
+}
+.button-style:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+  border-color: white;
+  background: white;
+  border-width: 3px;
+  font-weight: 400;
+  color: black;
+}
+
+
 .title{
   font-size: 60px;
   font-family: 'Oswald', sans-serif;
@@ -24,5 +62,9 @@ h1{
   width: 35%;
   font-size: 30px;
   font-family: 'Inter', sans-serif;
+
+}
+
+#quiz-section{
 
 }

@@ -5,16 +5,14 @@ import QuizCollection from './QuizCollection';
 export default function Home() {
   return (
     <div style={{width: "100%"}}>
-        <div style={{width: "100%", background: "#7094FF", padding: 0, margin: 0}}>
+        <div className='top-background' style={{width: "100%", padding: 0, margin: 0}}>
             <div style={{display: "flex", justifyContent: "space-between"}}>
                 <div style={{width: "500px", height: "300px", display: "flex", justifyContent: "center", alignItems: "center"}}>
                     <p className="title">Quiz App</p>
                 </div>
-                <div style={{ width: "800px", height: "300px", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                    <div style={{display: "flex", justifyContent: "space-around", width: "50%"}}>
-                        <button>Create new Quiz</button>
-                        <button>Browse existing Quizes</button>
-                    </div>
+                <div style={{ width: "700px", height: "300px", display: "flex", alignItems: "center", gap:"40px"}}>
+                    <a className="button-style">Create new Quiz</a>
+                    <a href='#quiz-section' className="button-style">Browse existing Quizes</a>
                 </div>
             </div>
             
@@ -25,7 +23,7 @@ export default function Home() {
         <div style={{background: "#EDF4FF", height: "1300px", width: "100%", paddingTop: "500px"}}>
             <div style={{height: "50%", width: "100%"}}>
                 <div style={{width: "100%", height: "100%"}}>
-                    <p className='smallTitle'>Popular Quizes:</p>
+                    <p id='quiz-section' className='smallTitle'>Popular Quizes:</p>
                     <QuizCollection />
                 </div>
             </div>
