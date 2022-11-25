@@ -24,6 +24,7 @@ h1{
 }
 
 .button-style{
+  list-style-type: none;
   font-family: 'Inter', sans-serif;
   text-align: center;
   padding-left: 75px;

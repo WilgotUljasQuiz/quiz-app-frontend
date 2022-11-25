@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import QuizCollection from './QuizCollection';
 
 
 export default function Home() {
+    const popularQuizSection = useRef(null)
+
+    const scrollToSection = (elementRef) =>{
+        window.scrollTo({
+            top: elementRef.current.offsetTop,
+            behavior: 'smooth'
+        })
+    }
   return (
     <div style={{width: "100%"}}>
         <div className='top-background' style={{width: "100%", padding: 0, margin: 0}}>
@@ -11,8 +19,8 @@ export default function Home() {
                     <p className="title">Quiz App</p>
                 </div>
                 <div style={{ width: "700px", height: "300px", display: "flex", alignItems: "center", gap:"40px"}}>
-                    <a className="button-style">Create new Quiz</a>
-                    <a href='#quiz-section' className="button-style">Browse existing Quizes</a>
+                    <li className="button-style">Create new Quiz</li>
+                    <li onClick={() => scrollToSection(popularQuizSection)} className="button-style">Browse existing Quizes</li>
                 </div>
             </div>
             
@@ -22,7 +30,7 @@ export default function Home() {
         </div>
         <div style={{background: "#EDF4FF", height: "1300px", width: "100%", paddingTop: "500px"}}>
             <div style={{height: "50%", width: "100%"}}>
-                <div style={{width: "100%", height: "100%"}}>
+                <div ref={popularQuizSection} style={{width: "100%", height: "100%"}}>
                     <p id='quiz-section' className='smallTitle'>Popular Quizes:</p>
                     <QuizCollection />
                 </div>
