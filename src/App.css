@@ -66,6 +66,8 @@ h1{
   background: rgb(142,170,255);
 }
 
+
+
 .arrow{
   position: absolute;
   left: 67px;
@@ -85,4 +87,29 @@ h1{
   font-size: 30px;
   font-family: 'Inter', sans-serif;
 
+}
+
+.input-style{
+  width: 300px;
+  height: 20px;
+  border: none;
+  background: none;
+  border-bottom: 2px solid rgb(35, 178, 249);
+  outline: none;
+}
+.description-text{
+  width: fit-content;
+  height: fit-content;
+  font-size: 20px;
+  font-family: 'Inter', sans-serif;
+}
+.description-text.underline{
+  border-bottom: 2px solid rgb(35, 178, 249);
+}
+
+.quiz-grid{
+  height: fit-content;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
 }

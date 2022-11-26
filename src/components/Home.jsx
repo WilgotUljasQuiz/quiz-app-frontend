@@ -17,16 +17,6 @@ export default function Home() {
   return (
     <div style={{width: "100%"}}>
         <div className='top-background' style={{width: "100%", padding: 0, margin: 0}}>
-            {/* <div style={{display: "flex", justifyContent: "space-between"}}>
-                <div style={{width: "500px", height: "300px", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                    <p className="title">Quiz App</p>
-                </div>
-                <div style={{ width: "700px", height: "300px", display: "flex", alignItems: "center", gap:"40px"}}>
-                    <li className="button-style">Create new Quiz</li>
-                    <li onClick={() => scrollToSection(popularQuizSection)} className="button-style">Browse existing Quizes</li>
-                </div>
-                
-            </div> */}
             <div style={{display: "flex", justifyContent: "center", width: "100%"}}>
                 <div style={{position: "relative", width: "120px", height: "300px"}}>
                     <div style={{position: "absolute", bottom: "0", left: "0"}}>
@@ -50,7 +40,7 @@ export default function Home() {
         </div>
         <div style={{background: "#EDF4FF", height: "1300px", width: "100%", paddingTop: "500px"}}>
             <div style={{height: "50%", width: "100%"}}>
-                <div ref={popularQuizSection} style={{width: "100%", height: "100%"}}>
+                <div ref={popularQuizSection} style={{width: "100%", height: "fit-content"}}>
                     <p id='quiz-section' className='smallTitle'>Popular Quizes:</p>
                     <QuizCollection />
                 </div>

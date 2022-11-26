@@ -4,6 +4,7 @@ import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
 import Navbar from './components/Navbar';
+import UserPage from './components/UserPage';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route exact path='/' element={<Home />} />
         <Route exact path='/login' element={<LoginPage />} />
         <Route exact path='/register' element={<RegisterPage />} />
+        <Route exact path='/user' element={<UserPage />} />
       </Routes>
     </div>
   </Router>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 export default function Navbar() {
@@ -6,10 +6,15 @@ export default function Navbar() {
 
     const navigate = useNavigate();
     const navigatePath = (path) => navigate(`/${path}`);
+
+    useEffect(() => {
+        //see if user is logged in
+        //then => setLoggedIn(true)
+    }, [])
   return (
     <div style={{width: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
         <div style={{width: "90%", display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-            <h1 onClick={() => navigatePath("/")} style={{userSelect: "none"}}>Quiz App</h1>
+            <h1 onClick={() => navigatePath("/")} style={{userSelect: "none", cursor: "pointer"}}>Quiz App</h1>
             <div style={{display: "flex", gap: "20px"}}>
                 {!loggedIn ?
                     <>
@@ -22,7 +27,7 @@ export default function Navbar() {
                     </>
                     : <>
                         <div>
-                            <li className="button-style login">My Profile</li>
+                            <li onClick={() => navigatePath("user")} className="button-style login">My Profile</li>
                         </div>
                     </>
                 }

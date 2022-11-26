@@ -8,8 +8,20 @@ export default function QuizCollection() {
         //fetch all quizes components from api
     }, [])
   return (
-    <div>
+    <div className='quiz-grid'>
         {allQuizComponents.map(quiz => <QuizComponent id={quiz.id}/>)}
+        <QuizComponent />
+        <QuizComponent />
+        <QuizComponent />
+        <QuizComponent />
+        <QuizComponent />
+        <QuizComponent />
+        <QuizComponent />
+        <QuizComponent />
+        <QuizComponent />
+        <QuizComponent />
+        <QuizComponent />
+        <QuizComponent />
     </div>
   )
 }
