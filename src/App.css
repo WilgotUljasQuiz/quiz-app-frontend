@@ -53,6 +53,27 @@ h1{
   color: black;
 }
 
+.button-style.login{
+  border-width: 2px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: black;
+  border-color: black;
+}
+.button-style.login.register{
+  background: rgb(142,170,255);
+}
+
+.arrow{
+  position: absolute;
+  left: 67px;
+  bottom: -70px;
+  fill: white;
+  height: 80px;
+  transform: rotate(180deg);
+}
 
 .title{
   font-size: 60px;
