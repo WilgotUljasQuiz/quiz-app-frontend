@@ -33,6 +33,10 @@ function LoginPage() {
       setSucces(false)
       setLoginMessage(err.toString())
     }
+
+    
+    setEmail("");
+    setPassword("");
   }
 
   return (
@@ -41,8 +45,8 @@ function LoginPage() {
         <h1>Login</h1>
         <div style={{width: "100%", display: "flex", justifyContent: "center", height: "300px", alignItems: "center"}}>  
           <div style={{display: "flex", flexDirection: "column", width: "fit-content", gap: "40px"}}>  
-            <input type="text" className='input-style' placeholder='Email adress' onChange={ev => setEmail(ev.target.value)}/>
-            <input type="text" className='input-style' placeholder='Password' onChange={ev => setPassword(ev.target.value)}/>
+            <input value={email} type="text" className='input-style' placeholder='Email adress' onChange={ev => setEmail(ev.target.value)}/>
+            <input value={password} type="password" className='input-style' placeholder='Password' onChange={ev => setPassword(ev.target.value)}/>
             <div>
               <li onClick={login} className="button-style login smaller">Login</li>
             </div>

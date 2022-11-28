@@ -33,6 +33,10 @@ function RegisterPage() {
       setSucces(false)
       setLoginMessage(err.toString())
     }
+
+    setUserName("");
+    setEmail("");
+    setPassword("");
   }
 
   return (
@@ -41,9 +45,9 @@ function RegisterPage() {
         <h1>Register</h1>
         <div style={{width: "100%", display: "flex", justifyContent: "center", height: "300px", alignItems: "center"}}>  
           <div style={{display: "flex", flexDirection: "column", width: "fit-content", gap: "40px"}}>  
-            <input type="text" className='input-style' placeholder='User name' onChange={ev => setUserName(ev.target.value)}/>
-            <input type="text" className='input-style' placeholder='Email adress' onChange={ev => setEmail(ev.target.value)}/>
-            <input type="text" className='input-style' placeholder='Password' onChange={ev => setPassword(ev.target.value)}/>
+            <input value={username} type="text" className='input-style' placeholder='User name' onChange={ev => setUserName(ev.target.value)}/>
+            <input value={email} type="text" className='input-style' placeholder='Email adress' onChange={ev => setEmail(ev.target.value)}/>
+            <input value={password} type="password" className='input-style' placeholder='Password' onChange={ev => setPassword(ev.target.value)}/>
             <div>
               <li onClick={register} className="button-style login smaller">Register</li>
             </div>

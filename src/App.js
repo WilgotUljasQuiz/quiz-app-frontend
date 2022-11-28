@@ -5,6 +5,7 @@ import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
 import Navbar from './components/Navbar';
 import UserPage from './components/UserPage';
+import QuizPage from './components/QuizPage';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route exact path='/login' element={<LoginPage />} />
         <Route exact path='/register' element={<RegisterPage />} />
         <Route exact path='/user' element={<UserPage />} />
+        <Route exact path='/quiz' element={<QuizPage />} />
       </Routes>
     </div>
   </Router>
