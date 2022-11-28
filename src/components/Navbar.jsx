@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 export default function Navbar() {
-    const [loggedIn, setLoggedIn] = useState(true);
+    const [loggedIn, setLoggedIn] = useState(false);
 
     const navigate = useNavigate();
     const navigatePath = (path) => navigate(`/${path}`);

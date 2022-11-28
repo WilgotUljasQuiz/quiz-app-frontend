@@ -5,18 +5,34 @@ function LoginPage() {
   const [loginMessage, setLoginMessage] = useState("")
   const [succes, setSucces] = useState(false)
 
-  const login = ev => {
+  const [username, setUserName] = useState("")
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("")
+
+  const login = async (ev) => {
     ev.preventDefault();
-    //register
 
-    //if succesful
-    setSucces(true)
-    setLoginMessage("Succes")
-    //log in => loggedIn(true)
+    try{
+      const response = await fetch("http://localhost:7283/api/Users/register", {
+        method: 'POST',
+        headers : {
+          'Content-Type': 'application/json',
+        },
+        body : JSON.stringify( {
+          username: username,
+          email: email,
+          password: password
+        })
+      })
+      console.log(response);
+      setSucces(true)
+      setLoginMessage("Succes")
 
-    //else
-    // setSucces(false)
-    // setLoginMessage("Error")
+    }catch (err){
+      console.log(err)
+      setSucces(false)
+      setLoginMessage(err.toString())
+    }
   }
 
   return (
@@ -25,8 +41,8 @@ function LoginPage() {
         <h1>Login</h1>
         <div style={{width: "100%", display: "flex", justifyContent: "center", height: "300px", alignItems: "center"}}>  
           <div style={{display: "flex", flexDirection: "column", width: "fit-content", gap: "40px"}}>  
-            <input type="text" className='input-style' placeholder='Email adress'/>
-            <input type="text" className='input-style' placeholder='Password'/>
+            <input type="text" className='input-style' placeholder='Email adress' onChange={ev => setEmail(ev.target.value)}/>
+            <input type="text" className='input-style' placeholder='Password' onChange={ev => setPassword(ev.target.value)}/>
             <div>
               <li onClick={login} className="button-style login smaller">Login</li>
             </div>
