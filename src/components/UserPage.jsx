@@ -10,7 +10,7 @@ export default function UserPage() {
         <div style={{display: "flex", flexDirection: "column"}}>
           <div style={{display: "flex", width: "100%"}}>  
             <div style={{width: "350px", height: "350px", background: "orange", display: "flex", justifyContent: "center", alignItems: "center"}}>
-              <h1>{userName}</h1>
+              <h1>{userName}{localStorage.getItem("AccessToken")}</h1>
             </div>
             <div style={{width: "1000px", display: "flex", justifyContent: "left", paddingLeft: "20px"}}>
               <div>

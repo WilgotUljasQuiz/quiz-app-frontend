@@ -6,6 +6,7 @@ import RegisterPage from './components/RegisterPage';
 import Navbar from './components/Navbar';
 import UserPage from './components/UserPage';
 import QuizPage from './components/QuizPage';
+import CreateQuizPage from './components/CreateQuizPage';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route exact path='/register' element={<RegisterPage />} />
         <Route exact path='/user' element={<UserPage />} />
         <Route exact path='/quiz' element={<QuizPage />} />
+        <Route exact path='/createquiz' element={<CreateQuizPage />} />
       </Routes>
     </div>
   </Router>

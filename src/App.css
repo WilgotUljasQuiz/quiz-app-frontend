@@ -66,6 +66,10 @@ h1{
   background: rgb(142,170,255);
 }
 
+.button-style.login.logout{
+  background: rgb(255, 96, 48);
+}
+
 
 
 .arrow{
@@ -97,6 +101,10 @@ h1{
   border-bottom: 2px solid rgb(35, 178, 249);
   outline: none;
 }
+.input-style.small{
+  width: 200px;
+}
+
 .description-text{
   width: fit-content;
   height: fit-content;

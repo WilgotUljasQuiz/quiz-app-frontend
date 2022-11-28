@@ -11,12 +11,14 @@ function RegisterPage() {
   const register = async (ev) => {
     ev.preventDefault();
     //register
-
+  
     try{
-      const response = await fetch("http://localhost:7283/api/Users/register", {
+      const response = await fetch("https://localhost:7283/api/Users/register", {
         method: 'POST',
         headers : {
+          'Access-Control-Allow-Origin':'*',
           'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
         body : JSON.stringify( {
           username: username,
@@ -24,6 +26,8 @@ function RegisterPage() {
           password: password
         })
       })
+      
+
       console.log(response);
       setSucces(true)
       setLoginMessage("Succes")
