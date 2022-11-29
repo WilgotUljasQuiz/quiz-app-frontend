@@ -43,6 +43,7 @@ export default function Navbar() {
                         <li onClick={() => {
                             localStorage.setItem("AccessToken", "");
                             checkIfLoggedIn();
+                            navigatePath("/")
                         }} className="button-style login logout">Log out</li>
                         </div>
                     </>

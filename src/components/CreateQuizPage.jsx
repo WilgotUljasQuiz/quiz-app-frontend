@@ -187,7 +187,9 @@ export default function CreateQuizPage() {
             </div>
             <div style={{marginTop: "100px", display: "flex", justifyContent: "center"}}>
                 <div>
-                    <h1>Questions:</h1>
+                    {allQuestions.length > 0 &&
+                        <h1>Questions:</h1>
+                    }
                     {allQuestions.map(question => <TemporaryQuizBlock key={question.data} title={question.title} answers={question.answers} />)}
                 </div>
             </div>
