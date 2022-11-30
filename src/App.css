@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
 body{
   padding: 0;
@@ -93,6 +94,22 @@ h1{
 
 }
 
+.regularTitle{
+  font-size: 35px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.regularTitle.small{
+  font-size: 30px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+
+.textStyle{
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+}
+
 .input-style{
   width: 300px;
   height: 20px;
@@ -103,6 +120,10 @@ h1{
 }
 .input-style.small{
   width: 200px;
+}
+.input-style.thick{
+  border-bottom: 3px solid rgb(35, 178, 249);
+  font-size: 20px;
 }
 
 .description-text{

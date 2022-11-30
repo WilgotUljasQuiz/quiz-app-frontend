@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import TemporaryQuizBlock from './TemporaryQuizBlock';
 
-let lastId = 0;
+let lastId = 1;
 
 export default function CreateQuizPage() {
     const [title, setTitle] = useState("");
@@ -131,57 +131,66 @@ export default function CreateQuizPage() {
         ])
     }
   return (
-    <div style={{display: "flex", justifyContent: "center", height: "100vh"}}>
-        <div style={{display:"flex", flexDirection: "column"}}>
-            <h1>Quiz Creator</h1>
+    <div>
+        <div style={{display: "flex", width: "100%", justifyContent: "space-around", background: "#4D4DF5", height: "100px", color: "white", marginBottom: "100px"}}>
+            <h1><u>Create Quiz</u></h1>
             
-            <div style={{width: "1000px", height: "fit-content", paddingTop: "100px", display: "flex", justifyContent: "center"}}>
-                <div style={{display: "flex", flexDirection: "column"}}>
-                    {quizId == "" ?
-                        <>
-                            <div style={{marginBottom: "20px"}}>
-                                <input type="text" className='input-style' placeholder='Quiz Title' onChange={ev => setTitle(ev.target.value)}/>
-                            </div>
-                            <li onClick={createQuiz} className="button-style login smaller">Enter</li>
-                            
-                        </>
-                        : 
-                        <>
-                            <h1>{title}</h1>
-                            <div style={{marginBottom: "20px", display: "flex", flexDirection: "column", gap: "10px"}}>
-                                <div>
-                                    <input type="text" value={questionTitle} className='input-style' placeholder='question' onChange={ev => setQuestionTitle(ev.target.value)}/>
-                                </div>
-                                
-                                {answerList.map(answer => 
+        </div>
+        <div style={{display: "flex", height: "fit-content", justifyContent: allQuestions.length > 0 ? "space-around" : "center"}}>
+            <div style={{display:"flex", flexDirection: "column"}}>
+                <div style={{ height: "fit-content", display: "flex"}}>
+                    <div style={{minHeight: "fit-content", borderRadius: "10px"}}>
+                        <div style={{display: "flex", flexDirection: "column"}}>
+                            {quizId == "" ?
+                                <>
+                                    <div style={{marginBottom: "20px"}}>
+                                        <input type="text" className='input-style' placeholder='Enter your Quiz Title' onChange={ev => setTitle(ev.target.value)}/>
+                                    </div>
+                                    <li onClick={createQuiz} className="button-style login smaller">Enter</li>
+                                    
+                                </>
+                                : 
+                                <>
+                                    <h1 className='regularTitle'><u>{title}</u></h1>
+                                    <div style={{marginBottom: "20px", display: "flex", flexDirection: "column", gap: "10px", boxShadow: "0px 2px 2px 2px rgba(0, 0, 0, 0.2)", padding: "50px"}}>
                                         <div>
-                                            <input type="text" value={answer.title} className='input-style small' placeholder='answer 1' onChange={ev => updateAnswer(ev, answer.id)}/>
-                                            <input type="radio" value={answer.isCorrect} name="check" onChange={() => setAnswerCorrect(answer.id)}></input>
+                                            <input type="text" value={questionTitle} className='input-style thick' placeholder='question' onChange={ev => setQuestionTitle(ev.target.value)}/>
                                         </div>
-                                    )
-                                }
-                            </div>
-                            <div style={{display: "flex", gap: "20px", marginTop: "40px"}}>
-                                <li onClick={addAnswer} className="button-style login smaller">Add Answer</li>
-                                <li onClick={createQuestion} className="button-style login smaller">Add Question</li>
-                            </div>
-                        </>
-                    }
+                                        <div style={{display: 'flex', justifyContent: "center", width: "100%"}}>
+                                            <div style={{height: "150px", width: "fit-content", overflowY: "scroll", padding:"10px", margin: "10px", boxShadow: "0px 2px 2px 1px rgba(0, 0, 0, 0.2)"}}>
+                                                {answerList.map(answer => 
+                                                        <div>
+                                                            <input type="text" value={answer.title} className='input-style small' placeholder={answer.id == undefined ? "answer 1" : "answer " + answer.id} onChange={ev => updateAnswer(ev, answer.id)}/>
+                                                            <input type="radio" value={answer.isCorrect} name="check" onChange={() => setAnswerCorrect(answer.id)}></input>
+                                                        </div>
+                                                    )
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style={{display: "flex", gap: "20px", marginTop: "40px", justifyContent: "center"}}>
+                                        <li onClick={addAnswer} className="button-style login smaller">Add Answer</li>
+                                        <li onClick={createQuestion} className="button-style login smaller">Add Question</li>
+                                    </div>
+                                </>
+                            }
+                        </div>
+                    </div>
                 </div>
                 
-                
-                    
-                
             </div>
-            <div style={{marginTop: "100px", display: "flex", justifyContent: "center"}}>
-                <div>
-                    {allQuestions.length > 0 &&
-                        <h1>Questions:</h1>
-                    }
-                    
-                    {allQuestions.map(question => <TemporaryQuizBlock key={question.data} title={question.title} answers={question.answers} />)}
+            {allQuestions.length > 0 &&
+                <div style={{height: "fit-content"}}>
+                    <h1 className='regularTitle'><u>Questions:</u></h1>
+                    <div style={{padding: "25px", boxShadow: "0px 2px 2px 2px rgba(0, 0, 0, 0.2)"}}>
+                        <div style={{display: "flex", justifyContent: "center", width: "fit-content", height: "400px"}}>
+                            <div style={{display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "10px", overflowY: "scroll"}} >
+                                {allQuestions.map(question => <TemporaryQuizBlock key={question.data} title={question.title} answers={question.answers} />)}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            }
         </div>
     </div>
   )
