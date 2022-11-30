@@ -1,6 +1,6 @@
 import './App.css';
 import Home from './components/Home';
-import { HashRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes , useParams} from 'react-router-dom';
 import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
 import Navbar from './components/Navbar';
@@ -24,7 +24,7 @@ function App() {
         <Route exact path='/quiz' element={<QuizPage />} />
         <Route exact path='/createquiz' element={<CreateQuizPage />} />
         <Route exact path='/playquizpage' element={<PlayQuizPage />} />
-        <Route exact path='/playquiz' element={<PlayPage />} />
+        <Route exact path='/playquiz/:gameId' element={<PlayPage />} />
       </Routes>
     </div>
   </Router>

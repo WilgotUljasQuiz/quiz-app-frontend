@@ -34,7 +34,7 @@ export default function Navbar() {
                     </>
                     : <>
                         <div>
-                            <li onClick={() => navigatePath("/playquiz")} className="button-style login">Play Quiz</li>
+                            <li onClick={() => navigatePath("/playquizpage")} className="button-style login">Play Quiz</li>
                         </div>
                         <div>
                             <li onClick={() => navigatePath("/createquiz")} className="button-style login">Create new Quiz</li>

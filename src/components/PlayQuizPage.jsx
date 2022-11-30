@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function PlayQuizPage() {
   const [quizId, setQuizId] = useState("");
   const [gameId, setGameId] = useState("");
+
+  const navigate = useNavigate();
+  const navigatePath = (path) => navigate(`${path}`);
 
   async function createGame(){
     const response = await fetch("https://localhost:7283/api/Quiz/createGame?QuizId="+ quizId.toString(), {
@@ -28,6 +33,7 @@ export default function PlayQuizPage() {
           <div style={{display: "flex", justifyContent: "center", width: "100%", marginTop: "20px"}}>
             <li className="button-style login" onClick={createGame}>Play</li>
           </div>
+          <li onClick={() => navigatePath("/playquiz/100")} className="button-style login">My Profile</li>
         </div>
       </div>
     </div>
