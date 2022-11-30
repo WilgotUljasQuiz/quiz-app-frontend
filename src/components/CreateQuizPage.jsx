@@ -133,7 +133,7 @@ export default function CreateQuizPage() {
     }
 
   return (
-    <div style={{display: "flex", justifyContent: "center"}}>
+    <div style={{display: "flex", justifyContent: "center", background: "rgb(142,170,255)", height: "100vh"}}>
         <div style={{display:"flex", flexDirection: "column"}}>
             <h1>Quiz Creator</h1>
             
