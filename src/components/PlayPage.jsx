@@ -1,12 +1,12 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import {BrowserRouter as Router, Routes, Route, Link, useParams} from 'react-router-dom';
 
 function PlayPage() {
     const params = useParams();
-    console.log(params);
+    console.log(params.gameId);
   return (
     <div>
-        <h1>{params}</h1>
+        <h1 className='regularTitle'>Playing quiz <u>{params.gameId}</u> </h1>
     </div>
   )
 }

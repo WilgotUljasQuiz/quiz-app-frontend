@@ -24,6 +24,10 @@ export default function PlayQuizPage() {
     setGameId(await data);
   }
   
+  function play (){
+    navigatePath(`/playquiz/${gameId}`);
+  }
+
   return (
     <div style={{display: "flex", justifyContent: "center", flexDirection: "column", marginTop: "50px"}}>
       <h1>Play Quiz</h1>
@@ -31,9 +35,15 @@ export default function PlayQuizPage() {
         <div style={{width: "200px"}}>
           <input type="text" style={{width: "100%"}} className='input-style' placeholder='Enter quiz id' onChange={ev => setQuizId(ev.target.value)}/>
           <div style={{display: "flex", justifyContent: "center", width: "100%", marginTop: "20px"}}>
-            <li className="button-style login" onClick={createGame}>Play</li>
+            <li className="button-style login" onClick={createGame}>Search</li>
           </div>
-          <li onClick={() => navigatePath("/playquiz/100")} className="button-style login">My Profile</li>
+          {gameId.length > 10 &&
+            <>
+              <p style={{color: "green"}}>Found quiz</p>
+              <li onClick={play} className="button-style login">Play</li>
+            </>
+          }
+          
         </div>
       </div>
     </div>
