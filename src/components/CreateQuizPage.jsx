@@ -103,23 +103,19 @@ export default function CreateQuizPage() {
                 createAnswerDtos: [
                     {
                         title: allAnswers[0].title,
-                        isCorrect: allAnswers[0].isCorrect,
-                        questionId: "string"
+                        isCorrect: allAnswers[0].isCorrect
                     },
                     {
                         title: allAnswers[1].title,
-                        isCorrect: allAnswers[1].isCorrect,
-                        questionId: "string"
+                        isCorrect: allAnswers[1].isCorrect
                     },
                     {
                         title: allAnswers[2].title,
-                        isCorrect: allAnswers[2].isCorrect,
-                        questionId: "string"
+                        isCorrect: allAnswers[2].isCorrect
                     },
                     {
                         title: allAnswers[3].title,
-                        isCorrect: allAnswers[3].isCorrect,
-                        questionId: "string"
+                        isCorrect: allAnswers[3].isCorrect
                     }
                         
                 ]
