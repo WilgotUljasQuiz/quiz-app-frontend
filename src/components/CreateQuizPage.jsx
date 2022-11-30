@@ -1,23 +1,22 @@
 import React, { useState } from 'react'
 import TemporaryQuizBlock from './TemporaryQuizBlock';
 
-const arr = [
-    {id: 0, title: "", isCorrect: false},
-    {id: 1, title: "", isCorrect: false},
-    {id: 2, title: "", isCorrect: false},
-    {id: 3, title: "", isCorrect: false}
-];
+let lastId = 0;
 
-const question = [
-    {title: "", answers: []}
-];
 export default function CreateQuizPage() {
     const [title, setTitle] = useState("");
     const [quizId, setQuizId] = useState("");
-    const [allAnswers, setAllAnswers] = useState(arr);
+    // const [allAnswers, setAllAnswers] = useState();
     const [questionTitle, setQuestionTitle] = useState("")
 
     const [allQuestions, setAllQuestions] = useState([]);
+
+    const [answerId, setAnswerId] = useState(0);
+    const [answerList, setAnswerList] = useState([{
+        title: "",
+        isCorrect: false,
+        answerId: 0
+    }]);
 
     const createQuiz = async(ev) => {
         ev.preventDefault();
@@ -49,7 +48,7 @@ export default function CreateQuizPage() {
     }
 
     const updateAnswer = (ev, id) => {
-        const newArr = allAnswers.map(answer => {
+        const newArr = answerList.map(answer => {
             if(answer.id == id){
                 return answer = {
                     id: answer.id,
@@ -60,12 +59,11 @@ export default function CreateQuizPage() {
                 return answer
             }
         })
-
-        setAllAnswers(newArr);
+        setAnswerList(newArr);
     }
 
     const setAnswerCorrect = (id) => {
-        const newArr = allAnswers.map(answer => {
+        const newArr = answerList.map(answer => {
             if(answer.id == id){
                 return answer = {
                     id: answer.id,
@@ -81,13 +79,13 @@ export default function CreateQuizPage() {
             }
         })
 
-        setAllAnswers(newArr);
+        setAnswerList(newArr);
     }
 
     async function createQuestion(ev){
         ev.preventDefault();
 
-        console.log(allAnswers);
+        console.log(answerList);
 
         const response = await fetch("https://localhost:7283/api/Quiz/createQuestion", {
             method: 'POST',
@@ -101,39 +99,39 @@ export default function CreateQuizPage() {
                 title: questionTitle,
                 quizId: quizId,
                 createAnswerDtos: [
-                    {
-                        title: allAnswers[0].title,
-                        isCorrect: allAnswers[0].isCorrect
-                    },
-                    {
-                        title: allAnswers[1].title,
-                        isCorrect: allAnswers[1].isCorrect
-                    },
-                    {
-                        title: allAnswers[2].title,
-                        isCorrect: allAnswers[2].isCorrect
-                    },
-                    {
-                        title: allAnswers[3].title,
-                        isCorrect: allAnswers[3].isCorrect
-                    }
-                        
+                    ...answerList                        
                 ]
             })
         })
         setQuestionTitle("");
-        setAllAnswers(arr);
         const data = await response.json();
         console.log(await data);
 
         setAllQuestions([
             ...allQuestions,
-            {title: questionTitle, answers: [allAnswers[0], allAnswers[1], allAnswers[2], allAnswers[3]], key: data}
+            {title: questionTitle, answers: [...answerList], key: data}
         ])
+
+        setAnswerList([{
+            title: "",
+            isCorrect: false,
+            answerId: 0
+        }]);
     }
 
+    function addAnswer(){
+        lastId++;
+        setAnswerList([
+            ...answerList,
+            {
+                title: "",
+                isCorrect: false,
+                id: lastId
+            }
+        ])
+    }
   return (
-    <div style={{display: "flex", justifyContent: "center", background: "rgb(142,170,255)", height: "100vh"}}>
+    <div style={{display: "flex", justifyContent: "center", height: "100vh"}}>
         <div style={{display:"flex", flexDirection: "column"}}>
             <h1>Quiz Creator</h1>
             
@@ -155,24 +153,18 @@ export default function CreateQuizPage() {
                                     <input type="text" value={questionTitle} className='input-style' placeholder='question' onChange={ev => setQuestionTitle(ev.target.value)}/>
                                 </div>
                                 
-                                <div>
-                                    <input type="text" value={allAnswers[0].title} className='input-style small' placeholder='answer 1' onChange={ev => updateAnswer(ev, 0)}/>
-                                    <input type="radio" value={allAnswers[0].isCorrect} name="check" onChange={() => setAnswerCorrect(0)}></input>
-                                </div>
-                                <div>
-                                    <input type="text" value={allAnswers[1].title} className='input-style small' placeholder='answer 2' onChange={ev => updateAnswer(ev, 1)}/>
-                                    <input type="radio" value={allAnswers[1].isCorrect} name="check" onChange={() => setAnswerCorrect(1)} ></input>
-                                </div>
-                                <div>
-                                    <input type="text" value={allAnswers[2].title} className='input-style small' placeholder='answer 3' onChange={ev => updateAnswer(ev, 2)}/>
-                                    <input type="radio" value={allAnswers[2].isCorrect} name="check" onChange={() => setAnswerCorrect(2)}></input>
-                                </div>
-                                <div>
-                                    <input type="text" value={allAnswers[3].title} className='input-style small' placeholder='answer 4' onChange={ev =>  updateAnswer(ev, 3)}/>
-                                    <input type="radio" value={allAnswers[3].isCorrect} name="check" onChange={() => setAnswerCorrect(3)}></input>
-                                </div>
+                                {answerList.map(answer => 
+                                        <div>
+                                            <input type="text" value={answer.title} className='input-style small' placeholder='answer 1' onChange={ev => updateAnswer(ev, answer.id)}/>
+                                            <input type="radio" value={answer.isCorrect} name="check" onChange={() => setAnswerCorrect(answer.id)}></input>
+                                        </div>
+                                    )
+                                }
                             </div>
-                            <li onClick={createQuestion} className="button-style login smaller">Add Question</li>
+                            <div style={{display: "flex", gap: "20px", marginTop: "40px"}}>
+                                <li onClick={addAnswer} className="button-style login smaller">Add Answer</li>
+                                <li onClick={createQuestion} className="button-style login smaller">Add Question</li>
+                            </div>
                         </>
                     }
                 </div>
@@ -186,6 +178,7 @@ export default function CreateQuizPage() {
                     {allQuestions.length > 0 &&
                         <h1>Questions:</h1>
                     }
+                    
                     {allQuestions.map(question => <TemporaryQuizBlock key={question.data} title={question.title} answers={question.answers} />)}
                 </div>
             </div>
