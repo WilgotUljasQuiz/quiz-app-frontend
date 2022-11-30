@@ -37,7 +37,7 @@ export default function PlayQuizPage() {
           <div style={{display: "flex", justifyContent: "center", width: "100%", marginTop: "20px"}}>
             <li className="button-style login" onClick={createGame}>Search</li>
           </div>
-          {gameId.length > 10 &&
+          {gameId.length != 10 &&
             <>
               <p style={{color: "green"}}>Found quiz</p>
               <li onClick={play} className="button-style login">Play</li>
