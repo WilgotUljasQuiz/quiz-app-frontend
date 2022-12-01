@@ -35,7 +35,7 @@ export default function PlayQuizPage() {
   }
   
   function play (){
-    navigatePath(`/playquiz/${gameId}`);
+    navigatePath(`/playquiz/${quizId}`);
   }
 
   return (
