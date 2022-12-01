@@ -17,8 +17,9 @@ function PlayPage() {
     console.log(params.quizId);
     getQuestionIds();
   }, [])
+
   async function getQuestionIds(){
-    try{
+    // try{
       const response = await fetch("https://localhost:7283/api/Quiz/getQuestionIds?quizid=" + params.quizId, {
         method: 'GET',
         headers: {
@@ -31,17 +32,16 @@ function PlayPage() {
 
       const data = await response.json();
       setQuestionIds(await data);
-      console.log(await data)
-      getActiveQuestion();
-    }catch(err){
-      console.log(err);
-    }
+    // }catch(err){
+    //   console.log(err);
+    // }
   }
 
   
 
   async function getActiveQuestion(){
-    try{
+    console.log(questionIds[0]);
+    // try{
       const response = await fetch("https://localhost:7283/api/Quiz/getQuestion?questionId=" + questionIds[0], {
         method: 'GET',
         headers: {
@@ -50,15 +50,15 @@ function PlayPage() {
           'Accept': 'application/json'
         }
       })
-      console.log(await response.json())
-      // const data = await response.json();
+      // console.log(await response.json())
+      const data = await response.json();
       // setActiveQuestion(await data);
-      // console.log(await data)
-    }catch(err){
-      console.log(err);
-    }
-    console.log(activeQuestion);
-    setActiveCount(prev => prev + 1);
+      console.log(await data)
+    // }catch(err){
+    //   console.log(err);
+    // }
+    // console.log(activeQuestion);
+    // setActiveCount(prev => prev + 1);
   }
   return (
     <div>
