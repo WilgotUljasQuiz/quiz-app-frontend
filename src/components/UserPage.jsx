@@ -3,12 +3,15 @@ import { useEffect } from 'react';
 import QuizComponent from './QuizComponent';
 export default function UserPage() {
   const [userName, setUserName] = useState("");
+  const [level, setLevel] = useState("");
+
   const [allQuizComponents, setAllQuizComponents] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchMyQuizComponents();
     setUserName(localStorage.getItem("Username"));
+    fetchMyLevel();
   }, [])
 
 
@@ -39,6 +42,32 @@ export default function UserPage() {
     }
   }
 
+  async function fetchMyLevel() {
+    try {
+      setLoading(true);
+      const response = await fetch("https://localhost:7283/api/users/getMyLevel", {
+        method: 'GET',
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem("AccessToken")}`
+        }
+      })
+
+      const data = await response.json();
+      if (response.status === 200) {
+        console.log(data);
+        setLevel(data);
+      } else {
+        alert(data);
+      }
+      setLoading(false);
+    } catch (err) {
+      console.log(err.toString())
+    }
+  }
+
 
   return (
     <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
@@ -51,8 +80,8 @@ export default function UserPage() {
             <div style={{ width: "1000px", display: "flex", justifyContent: "left", paddingLeft: "20px" }}>
               <div>
                 <p className='description-text underline'><b>Joined:</b> 18 months ago</p>
-                <p className='description-text underline'><b>Quizes:</b> 7</p>
-                <p className='description-text underline'><b>Rank:</b> PRO</p>
+                <p className='description-text underline'><b>Quizes:</b> {allQuizComponents.length}</p>
+                <p className='description-text underline'><b>Level:</b> {level}</p>
               </div>
             </div>
           </div>
