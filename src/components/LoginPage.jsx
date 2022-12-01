@@ -35,6 +35,8 @@ function LoginPage() {
       {
         console.log(data);
         localStorage.setItem("AccessToken", data);
+        localStorage.setItem("Username", username);
+
       }else{
         alert(data)
       }

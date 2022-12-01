@@ -4,32 +4,14 @@ import QuizComponent from './QuizComponent';
 export default function UserPage() {
   const [userName, setUserName] = useState("");
   const [allQuizComponents, setAllQuizComponents] = useState([]);
-
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchMyQuizComponents();
-    getMyUsername();
+    setUserName(localStorage.getItem("Username"));
   }, [])
 
 
-  async function getMyUsername(){
-    try{
-      const response = await fetch("https://localhost:7283/api/user/getMyUsername", {
-        method: 'GET',
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem("AccessToken")}`
-        }
-      })
-      const name = await response.json();
-      setUserName(await name);
-    }catch(err){
-      console.log(err)
-    }
-  }
 
   async function fetchMyQuizComponents() {
     try {
