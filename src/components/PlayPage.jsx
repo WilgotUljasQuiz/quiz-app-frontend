@@ -6,7 +6,7 @@ function PlayPage() {
     console.log(params.gameId);
   return (
     <div>
-        <h1 className='regularTitle'>Playing quiz <u>{params.gameId}</u> </h1>
+      <h1 className='regularTitle'>Playing quiz: <u>{params.gameId}</u> </h1>
     </div>
   )
 }

@@ -15,6 +15,10 @@ export default function Navbar() {
             setLoggedIn(false);
         }
     }
+
+    useEffect(() => {
+        checkIfLoggedIn();
+    }, [])
   return (
     <div style={{width: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
         <div style={{width: "90%", display: "flex", justifyContent: "space-between", alignItems: "center"}}>
