@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import QuizCollection from './QuizCollection';
 import { useEffect } from 'react';
 import QuizComponent from './QuizComponent';
 export default function UserPage() {
   const [userName, setUserName] = useState("");
   const [allQuizComponents, setAllQuizComponents] = useState([]);
+
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchMyQuizComponents();
@@ -23,7 +24,6 @@ export default function UserPage() {
           'Authorization': `Bearer ${localStorage.getItem("AccessToken")}`
         }
       })
-      console.log(await response)
       const name = await response.json();
       setUserName(await name);
     }catch(err){
@@ -33,6 +33,7 @@ export default function UserPage() {
 
   async function fetchMyQuizComponents() {
     try {
+      setLoading(true);
       const response = await fetch("https://localhost:7283/api/Quiz/getMyQuizzes", {
         method: 'GET',
         headers: {
@@ -50,7 +51,7 @@ export default function UserPage() {
       } else {
         alert(data);
       }
-
+      setLoading(false);
     } catch (err) {
       console.log(err.toString())
     }
@@ -74,10 +75,21 @@ export default function UserPage() {
             </div>
           </div>
           <div>
-            <h1>Quizes:</h1>
-            <div style={{display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:"40px"}} >
-              {allQuizComponents.map(quiz => <QuizComponent quizName={quiz.quizName} />)}
+            <div style={{height: "140px"}}>
+              <h1>Quizes:</h1>
+              <hr style={{height: "4px", background: "black"}} />
             </div>
+            
+            
+            {loading ?
+              <div style={{display: "flex", justifyContent: "center"}}>
+                <div class="loader big"></div>
+              </div>
+              :
+              <div style={{display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:"40px"}} >
+                {allQuizComponents.map(quiz => <QuizComponent quizName={quiz.quizName} />)}
+              </div>
+            } 
           </div>
         </div>
       </div>
