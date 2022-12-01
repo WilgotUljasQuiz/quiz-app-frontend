@@ -24,7 +24,7 @@ function App() {
         <Route exact path='/quiz' element={<QuizPage />} />
         <Route exact path='/createquiz' element={<CreateQuizPage />} />
         <Route exact path='/playquizpage' element={<PlayQuizPage />} />
-        <Route exact path='/playquiz/:gameId' element={<PlayPage />} />
+        <Route exact path='/playquiz/:quizId/:gameId' element={<PlayPage />} />
       </Routes>
     </div>
   </Router>
