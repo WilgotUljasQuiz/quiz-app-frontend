@@ -8,8 +8,12 @@ function LoginPage() {
   const [username, setUserName] = useState("")
   const [password, setPassword] = useState("")
 
+  const [loading, setLoading] = useState(false);
+
   const login = async (ev) => {
     ev.preventDefault();
+
+    setLoading(true);
 
     try{
       const response = await fetch("https://localhost:7283/api/Users/login", {
@@ -47,6 +51,7 @@ function LoginPage() {
     
     setUserName("");
     setPassword("");
+    setLoading(false);
   }
 
   return (
@@ -60,9 +65,16 @@ function LoginPage() {
             <div>
               <li onClick={login} className="button-style login smaller">Login</li>
             </div>
-            {loginMessage != "" &&
-              <p style={{color: succes ? "green" : "red"}}>{loginMessage}</p>
-            }
+            <div style={{height: "50px", width: "100%"}}>
+              {loginMessage != "" &&
+                <p style={{color: succes ? "green" : "red"}}>{loginMessage}</p>
+              }
+              {loading &&
+                <div style={{display: "flex", justifyContent: "center"}}>
+                  <div class="loader"></div>
+                </div>
+              }
+            </div>
           </div>
           
         </div>        

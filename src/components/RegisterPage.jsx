@@ -8,10 +8,14 @@ function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("")
 
+  const [loading, setLoading] = useState(false);
+
   const register = async (ev) => {
     ev.preventDefault();
     //register
-  
+    
+    setLoading(true);
+
     try{
       const response = await fetch("https://localhost:7283/api/Users/register", {
         method: 'POST',
@@ -41,6 +45,7 @@ function RegisterPage() {
     setUserName("");
     setEmail("");
     setPassword("");
+    setLoading(false);
   }
 
   return (
@@ -55,9 +60,16 @@ function RegisterPage() {
             <div>
               <li onClick={register} className="button-style login smaller">Register</li>
             </div>
-            {loginMessage != "" &&
-              <p style={{color: succes ? "green" : "red"}}>{loginMessage}</p>
-            }
+            <div style={{height: "50px", width: "100%"}}>
+              {loginMessage != "" &&
+                <p style={{color: succes ? "green" : "red"}}>{loginMessage}</p>
+              }
+              {loading &&
+                <div style={{display: "flex", justifyContent: "center"}}>
+                  <div class="loader"></div>
+                </div>
+              }
+            </div>
           </div>
           
         </div>        
