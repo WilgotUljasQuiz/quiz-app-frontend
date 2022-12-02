@@ -1,7 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function AnswerComponent({answer, setSelectedAnswer, showAnswer}) {
     const [clicked, setClicked] = useState(false);
+    useEffect(() => {
+        if(clicked){
+            setClicked(false)
+        }
+    }, [showAnswer])
   return ( 
     <div className={clicked ? "answer-card clicked" : "answer-card"} style={{background: showAnswer && (answer.isCorrect ? "green" : "red")}} onClick={() =>{ 
         setSelectedAnswer(answer)

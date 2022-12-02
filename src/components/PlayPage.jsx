@@ -150,14 +150,19 @@ function PlayPage() {
                 <div style={{width: "fit-content", display: "flex", flexDirection: "column", alignItems: "center"}}>
                   <div style={{width: "400px", height: "100%", display: "flex", justifyContent: "space-around", alignItems: "center", marginTop: "30px"}}>
                     {/* <li className="button-style login smaller" onClick={decreasePage}>Previus Question</li> */}
-                    {answersPage == questionIds.length-1 ?
-                      <li style={{background: "orange"}} className="button-style login smaller" onClick={finishQuiz}>Finish Quiz</li>
-                      :
-                      <li className="button-style login smaller" onClick={incrementPage}>Next Question</li>
+                    {showAnswer &&
+                      <>
+                        {answersPage == questionIds.length-1 ?
+                          <li style={{background: "orange"}} className="button-style login smaller" onClick={finishQuiz}>Finish Quiz</li>
+                          :
+                          <li className="button-style login smaller" onClick={incrementPage}>Next Question</li>
+                        }
+                      </>
                     }
                     
+                    
                   </div>
-                  <p>{answerMessage}</p>
+                  <p style={{color: "yellow"}}>{answerMessage}</p>
                 </div>
               </div>
             </div>
