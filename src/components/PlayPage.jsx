@@ -19,6 +19,12 @@ function PlayPage() {
     getQuestionIds();
   }, [])
 
+  useEffect(() => {
+    if(questionIds.length > 0){
+      getActiveQuestion()
+    }
+  }, [questionIds])
+
   async function getQuestionIds(){
     const response = await fetch("https://localhost:7283/api/Quiz/getQuestionIds?quizid=" + params.quizId, {
       method: 'GET',
