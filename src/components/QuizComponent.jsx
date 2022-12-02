@@ -5,23 +5,20 @@ import { useNavigate } from 'react-router-dom';
 export default function QuizComponent(props) {
   const navigate = useNavigate();
   const navigatePath = (path) => navigate(`${path}`);
-
-  
-  const [quizId, setQuizId] = useState(props.quizId);
   const [gameId, setGameId] = useState("");
   
   useEffect(() => {
-    setQuizId(props.quizId);
-    if(gameId != "" && quizId != ""){
-      navigatePath(`/playquiz/${quizId}/${gameId}`)
+    if(gameId != ""){
+      navigatePath(`/playquiz/${props.quizId}/${gameId}`)
     }
   }, [gameId])
 
-
   async function createGame(){
-    setGameId("");
+    // console.log();
+    // console.log(quizId);
+    // setGameId("");
     try{
-      const response = await fetch("https://localhost:7283/api/Quiz/createGame?QuizId="+ quizId.toString(), {
+      const response = await fetch("https://localhost:7283/api/Quiz/createGame?QuizId="+ props.quizId.toString(), {
         method: 'POST',
         headers : {
           'Access-Control-Allow-Origin':'*',
@@ -33,9 +30,14 @@ export default function QuizComponent(props) {
       const data = await response.json();
       console.log(await data);
       setGameId(await data);
+      play();
     }catch(err){
       console.log(err);
     }
+  }
+
+  function play(){
+    
   }
   return (
     <div className='quiz-card' onClick={createGame}>

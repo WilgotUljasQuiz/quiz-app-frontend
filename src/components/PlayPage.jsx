@@ -11,6 +11,12 @@ function PlayPage() {
   const [activeQuestion, setActiveQuestion] = useState([]);
   const [gotAnswers, setGotAnswers] = useState(false);
 
+  const [selectedAnswer, setSelectedAnswer] = useState([]);
+  
+  const [answerMessage, setAnswerMessage] = useState("");
+
+  const [points, setPoints] = useState(0);
+
   useEffect(() => {
     getQuestionIds();
   }, [])
@@ -37,11 +43,40 @@ function PlayPage() {
 
   useEffect(() => {
     if(questionIds.length > 0){
+      setAnswerMessage("");
       getActiveQuestion()
+      // checkIfAnswerCorrect();
     }
   }, [answersPage])
 
-  
+  useEffect(() => {
+    console.log(selectedAnswer);
+  }, [selectedAnswer])
+
+  async function checkIfAnswerCorrect(){
+    console.log(selectedAnswer.questionId);
+    try{
+      const response = await fetch("https://localhost:7283/api/Quiz/submitAnswer", {
+        method: 'POST',
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem("AccessToken")}`
+        }, body : JSON.stringify( {
+          gameId: params.gameId,
+          answerId: selectedAnswer.id
+        })
+      })
+      const data = await response.json();
+      if(await data == "Correct Answer"){
+        setAnswerMessage(data);
+        setPoints(prev => prev + 1);
+      }
+    }catch(err){
+      console.log(err);
+    }
+  }
 
   async function getActiveQuestion(){
     try{
@@ -61,6 +96,7 @@ function PlayPage() {
     }
   }
 
+ 
   const incrementPage = () => answersPage < questionIds.length-1 && setAnswersPage(prev => prev + 1)
   const decreasePage = () => answersPage > 0 && setAnswersPage(prev => prev - 1);
 
@@ -75,7 +111,12 @@ function PlayPage() {
             <div style={{display: "flex", flexDirection: "column"}}>
               {gotAnswers && 
                 <>
-                  {activeQuestion.answers.map(answer => <div key={Math.random() * 1000}>{answer.title} <input name='answer' type="radio"></input> </div>)}
+                  {activeQuestion.answers.map(answer => <div key={Math.random() * 1000}>
+                    {answer.title} 
+                    <input name='answer' type="radio" onChange={() => setSelectedAnswer(answer)}></input> 
+                    </div>
+                    )
+                  }
                 </>
               }
             </div>
@@ -83,9 +124,11 @@ function PlayPage() {
           <div style={{width: "100%", display: "flex", justifyContent: "center"}}>
             <div style={{width: "fit-content", background: "orange", display: "flex", flexDirection: "column"}}>
               <div style={{width: "fit-content", display: "flex"}}>
-                <li className="button-style login smaller" onClick={decreasePage}>Previus Question</li>
+                {/* <li className="button-style login smaller" onClick={decreasePage}>Previus Question</li> */}
                 <li className="button-style login smaller" onClick={incrementPage}>Next Question</li>
+                <li className="button-style login smaller" onClick={checkIfAnswerCorrect}>Check</li>
               </div>
+              <p>{answerMessage}</p>
             </div>
           </div>
         </div>
