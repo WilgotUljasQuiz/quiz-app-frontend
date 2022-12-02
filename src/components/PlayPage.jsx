@@ -75,7 +75,7 @@ function PlayPage() {
             <div style={{display: "flex", flexDirection: "column"}}>
               {gotAnswers && 
                 <>
-                  {activeQuestion.answers.map(answer => <p key={Math.random() * 1000}>{answer.title}</p>)}
+                  {activeQuestion.answers.map(answer => <div key={Math.random() * 1000}>{answer.title} <input name='answer' type="radio"></input> </div>)}
                 </>
               }
             </div>
