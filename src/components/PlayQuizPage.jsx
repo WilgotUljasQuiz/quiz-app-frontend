@@ -19,6 +19,7 @@ export default function PlayQuizPage() {
   const [searchedQuizes, setSearchedQuizes] = useState([]);
 
   useEffect(() => {
+    createGame();
     getAllQuizes();
   }, [])
 
@@ -54,7 +55,9 @@ export default function PlayQuizPage() {
   function search () {
     
     const filtered = allQuizes.filter(quiz => {
-      return quiz.quizName.includes(searchTerm);
+      if(quiz.quizName.includes(searchTerm)){
+        return quiz;
+      }
     })
     console.log(filtered)
     setSearchedQuizes(filtered);
@@ -110,8 +113,7 @@ export default function PlayQuizPage() {
           <div className='quiz-grid'>
             {searchedQuizes.length > 0 ?
               <>
-                {searchedQuizes.map(quiz => 
-                  <QuizComponent quizName={quiz.quizName} quizId={quiz.id} />)
+                {searchedQuizes.map(quiz => <QuizComponent quizName={quiz.quizName} quizId={quiz.id} />)
                 }
               </> : <>
                 {allQuizes.length > 0 && allQuizes.map(quiz => <QuizComponent quizName={quiz.quizName} quizId={quiz.id} />)
