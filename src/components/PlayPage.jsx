@@ -7,23 +7,13 @@ function PlayPage() {
   //game id: params.gameId
   //quiz id: params.quizId
   const [questionIds, setQuestionIds] = useState([]);
-
-  const [activeCount, setActiveCount] = useState(0);
+  const [answersPage, setAnswersPage] = useState(0);
   const [activeQuestion, setActiveQuestion] = useState([]);
-
-  
-  const [test, setTest] = useState(false);
+  const [gotAnswers, setGotAnswers] = useState(false);
 
   useEffect(() => {
-    // console.log(params.quizId);
     getQuestionIds();
   }, [])
-
-  useEffect(() => {
-    if(questionIds.length > 0){
-      getActiveQuestion()
-    }
-  }, [questionIds])
 
   async function getQuestionIds(){
     const response = await fetch("https://localhost:7283/api/Quiz/getQuestionIds?quizid=" + params.quizId, {
@@ -38,12 +28,24 @@ function PlayPage() {
     setQuestionIds(await data);
   }
 
+  useEffect(() => {
+    if(questionIds.length > 0){
+      console.log(questionIds.length);
+      getActiveQuestion()
+    }
+  }, [questionIds])
+
+  useEffect(() => {
+    if(questionIds.length > 0){
+      getActiveQuestion()
+    }
+  }, [answersPage])
+
   
 
   async function getActiveQuestion(){
-    
     try{
-      const response = await fetch("https://localhost:7283/api/Quiz/getQuestion?questionId=" + questionIds[activeCount], {
+      const response = await fetch("https://localhost:7283/api/Quiz/getQuestion?questionId=" + questionIds[answersPage], {
         method: 'GET',
         headers: {
           'Access-Control-Allow-Origin': '*',
@@ -52,32 +54,26 @@ function PlayPage() {
         }
       })
       const data = await response.json();
-      console.log(await data);
-
       setActiveQuestion(await data);
-
-      setTest(true);
-      console.log(activeQuestion);
-      setActiveCount(prev => prev + 1);
-
-      console.log(activeQuestion.length);
+      setGotAnswers(true);   
     }catch(err){
       console.log(err);
     }
-    
   }
+
+  const incrementPage = () => answersPage < questionIds.length-1 && setAnswersPage(prev => prev + 1)
+  const decreasePage = () => answersPage > 0 && setAnswersPage(prev => prev - 1);
+
   return (
     <div>
       <h1 className='regularTitle'>Playing quiz: <u>{params.gameId}</u> </h1>
-
       <div style={{display: "flex", justifyContent: "center"}}>
         <div style={{width: "600px", height: "600px", background: "gray", display: "flex", flexDirection: "column"}}>
-          <h1 >Question: </h1>
+          <h1>Quiz Name</h1>
           <div style={{background: "blue", height: "400px"}}>
             <h1>{activeQuestion.title}</h1>
             <div style={{display: "flex", flexDirection: "column"}}>
-              {/* answers: */}
-              {test && 
+              {gotAnswers && 
                 <>
                   {activeQuestion.answers.map(answer => <p key={Math.random() * 1000}>{answer.title}</p>)}
                 </>
@@ -86,8 +82,9 @@ function PlayPage() {
           </div>
           <div style={{width: "100%", display: "flex", justifyContent: "center"}}>
             <div style={{width: "fit-content", background: "orange", display: "flex", flexDirection: "column"}}>
-              <div style={{width: "200px"}}>
-                <li className="button-style login smaller" onClick={getActiveQuestion}>Next Question</li>
+              <div style={{width: "fit-content", display: "flex"}}>
+                <li className="button-style login smaller" onClick={decreasePage}>Previus Question</li>
+                <li className="button-style login smaller" onClick={incrementPage}>Next Question</li>
               </div>
             </div>
           </div>
