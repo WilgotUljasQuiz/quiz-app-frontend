@@ -79,6 +79,12 @@ h1{
   height: 20px;
   animation: spin 2s linear infinite;
 }
+.loader.small{
+  border: 3.5px solid #f3f3f3; 
+  border-top: 3.5px solid #3498db; 
+  width: 15px;
+  height: 15px;
+}
 .loader.big{
   border: 10px solid #f3f3f3; 
   border-top: 10px solid #3498db; 
@@ -179,8 +185,8 @@ p{
   color: white;
   cursor: pointer;
   transform: translate(10px, -10px);
-  transform: rotate(5deg);
-  border: 5px solid rgb(0, 0, 0);
+  /* transform: rotate(5deg); */
+  border: 5px solid rgb(255, 255, 255);
 }
 
 .quiz-card{
