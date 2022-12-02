@@ -1,24 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import QuizComponent from './QuizComponent';
 
 export default function PlayQuizPage() {
-  const [quizId, setQuizId] = useState("");
-
   const [searchTerm, setSearchTerm] = useState("");
-
-  const [gameId, setGameId] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const navigate = useNavigate();
-  const navigatePath = (path) => navigate(`${path}`);
-
-  // const [allQuizes, setAllQuizes] = useState([]);
-
   const [searchedQuizes, setSearchedQuizes] = useState([]);
 
-  const [filtered, setFiltered] = useState([]);
+  const [allQuizes, setAllQuizes] = useState([]);
 
   useEffect(() => {
     getAllQuizes();
@@ -46,6 +34,7 @@ export default function PlayQuizPage() {
 
       const data = await response.json();
       setSearchedQuizes(await data)
+      setAllQuizes(await data)
     }catch(err){
       console.log(err);
       setLoading(false);
@@ -54,43 +43,14 @@ export default function PlayQuizPage() {
   }
 
   function search () {
-    console.log()
-    const filt = searchedQuizes.filter(quiz => {
-      if(quiz.quizName.includes(searchTerm)){
+    const filt = allQuizes.filter(quiz => {
+      const name = quiz.quizName.toLowerCase();
+      if(name.includes(searchTerm.toLowerCase())){
         return quiz;
       }
     })
     setSearchedQuizes(filt);
-
-    setFiltered(filt);
-    console.log(filtered)
   }
-  // async function createGame(){
-  //   setGameId("");
-  //   setLoading(true);
-  //   try{
-  //     const response = await fetch("https://localhost:7283/api/Quiz/createGame?QuizId="+ quizId.toString(), {
-  //       method: 'POST',
-  //       headers : {
-  //         'Access-Control-Allow-Origin':'*',
-  //         'Content-Type': 'application/json',
-  //         'Accept': 'application/json',
-  //         'Authorization': `Bearer ${localStorage.getItem("AccessToken")}`
-  //       }
-  //     })
-  //     const data = await response.json();
-  //     setGameId(await data);
-  //   }catch(err){
-  //     setGameId("noquiz");
-  //     console.log(err);
-  //     setLoading(false);
-  //   }
-  //   setLoading(false);
-  // }
-  
-  // function play (){
-  //   navigatePath(`/playquiz/${quizId}/${gameId}`);
-  // }
 
   return (
     <div style={{display: "flex", justifyContent: "center", flexDirection: "column", marginTop: "50px"}}>
@@ -114,21 +74,8 @@ export default function PlayQuizPage() {
           </div>
           <div className='quiz-grid'>
             {searchedQuizes.length > 0 && searchedQuizes.map(quiz => <QuizComponent quizName={quiz.quizName} quizId={quiz.id} />)
-    
             }
-            
-          </div>
-          
-          {gameId.length > 10 &&
-            <>
-              <p style={{color: "green"}}>Quiz Found</p>
-              {/* <li onClick={play} className="button-style login">Play</li> */}
-            </>
-          }
-          {gameId == "noquiz" &&
-            <p style={{color: "red"}}>No Quiz Found</p>
-          }
-          
+          </div> 
         </div>
       </div>
     </div>
