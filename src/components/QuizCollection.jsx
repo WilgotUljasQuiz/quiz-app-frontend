@@ -22,10 +22,11 @@ export default function QuizCollection() {
       const data = await response.json();
       if (response.status === 200) {
         setAllQuizComponents(data);
+        console.log(data);
       } else {
         alert(data);
       }
-
+    
     } catch (err) {
       console.log(err.toString())
     }

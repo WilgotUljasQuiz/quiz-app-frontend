@@ -25,6 +25,14 @@ export default function Home2() {
     }
 
 
+    const checkIfLoggedIn = () => {
+        if(localStorage.getItem("AccessToken") != ""){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     return (
         <div style={{ width: "100%" }}>
             <div className='top-background2' style={{ width: "100%", padding: 0, margin: 0 }}>
@@ -41,7 +49,7 @@ export default function Home2() {
                         </div>
                         <div style={{display:"flex", justifyContent: "center", gap: "50px"}}>
                             <div>
-                                <AiOutlineSearch onClick={() => navigatePath("/playquizpage")} className="icon"  onMouseEnter={() => setSearchHovering(true)} onMouseLeave={() => setSearchHovering(false)}/>
+                                <AiOutlineSearch onClick={() => checkIfLoggedIn() ? navigatePath("/playquizpage") : navigatePath("/login")} className="icon"  onMouseEnter={() => setSearchHovering(true)} onMouseLeave={() => setSearchHovering(false)}/>
                                 <div style={{width: "100px"}}>  
                                     {searchHovering &&
                                         <p style={{color: "white", transition: "0.2s"}}>Search Quizes</p>
@@ -49,7 +57,7 @@ export default function Home2() {
                                 </div>
                             </div>
                             <div >
-                                <IoIosAddCircle onClick={() => navigatePath("/createquiz")} className="icon" onMouseEnter={() => setCreateHovering(true)} onMouseLeave={() => setCreateHovering(false)} />
+                                <IoIosAddCircle onClick={() => checkIfLoggedIn() ? navigatePath("/createquiz") : navigatePath("/login")} className="icon" onMouseEnter={() => setCreateHovering(true)} onMouseLeave={() => setCreateHovering(false)} />
                                 <div style={{width: "100px"}}> 
                                     {createHovering &&
                                         <p style={{color: "white", transition: "0.2s"}}>Create Quizes</p> 
@@ -57,16 +65,6 @@ export default function Home2() {
                                 </div>
                             </div>
                         </div>
-                        {/* <div style={{width: "160px"}}>
-                            <li className="buttonStyle2">Click</li>
-                        </div> */}
-                        {/* <div className='hiddenCard'>
-
-                        </div> */}
-                        
-                        {/* <div className='middleBar'>
-
-                         </div> */}
                     </div>
                 </div>
 
@@ -79,13 +77,6 @@ export default function Home2() {
                         <li onClick={() => scrollToSection(popularQuizSection)} className="button-style home">Browse Quizes</li>
                         <div>
                             <BsArrowDownCircle style={{width: "55px", height: "55px"}} />
-                            {/* <svg className='arrow' width="80px" height="80px" version="1.1" viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
-                                <g>
-                                    <path d="m350 507.5c-125.45 0-227.5-102.05-227.5-227.5s102.05-227.5 227.5-227.5 227.5 102.05 227.5 227.5-102.05 227.5-227.5 227.5zm0-420c-106.14 0-192.5 86.355-192.5 192.5s86.355 192.5 192.5 192.5 192.5-86.355 192.5-192.5-86.355-192.5-192.5-192.5z" />
-                                    <path d="m412.82 290.32c-4.4766 0-8.957-1.7109-12.375-5.1289l-50.449-50.449-50.449 50.449c-6.8359 6.8359-17.91 6.8359-24.746 0-6.8359-6.8359-6.8359-17.91 0-24.746l62.824-62.824c6.8359-6.8359 17.91-6.8359 24.746 0l62.824 62.824c6.8359 6.8359 6.8359 17.91 0 24.746-3.4219 3.418-7.8984 5.1289-12.375 5.1289z" />
-                                    <path d="m350 367.5c-9.6641 0-17.5-7.8359-17.5-17.5v-140c0-9.6641 7.8359-17.5 17.5-17.5s17.5 7.8359 17.5 17.5v140c0 9.6641-7.8359 17.5-17.5 17.5z" />
-                                </g>
-                            </svg> */}
                         </div>
                     </div>
                 </div>

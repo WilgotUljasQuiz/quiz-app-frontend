@@ -14,9 +14,14 @@ export default function QuizComponent(props) {
   }, [gameId])
 
   async function createGame(){
-    // console.log();
-    // console.log(quizId);
-    // setGameId("");
+
+    //check if user logged in:
+
+    if(localStorage.getItem("AccessToken") == ""){
+      navigatePath("/login");
+      return;
+    }
+
     try{
       const response = await fetch("https://localhost:7283/api/Quiz/createGame?QuizId="+ props.quizId.toString(), {
         method: 'POST',
