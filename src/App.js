@@ -9,6 +9,7 @@ import QuizPage from './components/QuizPage';
 import CreateQuizPage from './components/CreateQuizPage';
 import PlayQuizPage from './components/PlayQuizPage';
 import PlayPage from './components/PlayPage';
+import Home2 from './components/Home2';
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
     <div className="App">
       <Navbar />
       <Routes>
-        <Route exact path='/' element={<Home />} />
+        <Route exact path='/' element={<Home2 />} />
         <Route exact path='/login' element={<LoginPage />} />
         <Route exact path='/register' element={<RegisterPage />} />
         <Route exact path='/user' element={<UserPage />} />

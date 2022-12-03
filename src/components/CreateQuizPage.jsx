@@ -94,6 +94,19 @@ export default function CreateQuizPage() {
 
         console.log(answerList);
 
+        
+        for (let i = 0; i < answerList.length; i++) {
+            if(answerList[i].title == ""){
+                alert("enter all answer titles")
+                return;
+            }
+            
+        }
+        if(questionTitle == ""){
+            alert("enter a question title")
+            return;
+        }
+
         const response = await fetch("https://localhost:7283/api/Quiz/createQuestion", {
             method: 'POST',
             headers : {

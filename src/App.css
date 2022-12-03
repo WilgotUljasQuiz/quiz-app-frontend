@@ -20,6 +20,88 @@ html {
   background: rgb(142,170,255);
   background: linear-gradient(257deg, rgba(142,170,255,1) 0%, rgba(86,166,255,1) 100%);
 }
+.top-background2{
+  background: #4D4DF5;
+}
+/* 
+.buttonStyle2{
+  border-radius: 15px;
+  border-width: 3px;
+  border-style: solid;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border: none;
+  list-style-type: none;
+  background: white;
+}
+
+.hiddenCard{
+  position: absolute;
+  height: 400px;
+  width: 300px;
+  background: orange;
+  z-index: 10;
+}
+.hiddenCard:hover{
+  transform: scaleY(2);
+  
+  z-index: 10;
+} */
+
+/* .interactButton{
+  background: none;
+  width: 75px;
+  border-radius: 100px;
+  text-align: center;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.interactButton:hover{
+  cursor: pointer;
+  background: white;
+} */
+.icon{
+  width: 55px;
+  height: 55px;
+  color: white;
+  padding: 10px;
+  transition: 0.2s;
+}
+.icon:hover{
+  background: #EDF4FF;
+  transform: scale(1.1);
+  border-radius: 100px;
+  cursor: pointer;
+  color: black;
+}
+
+/* .middleBar{
+  z-index: 100;
+  height: 600px;
+  width: 100%;
+  background: white;
+} */
+
+.bigTitle{
+  font-family: 'Inter', sans-serif;
+  font-size: 100px;
+  width: 500px;
+  margin: 0;
+  height: fit-content;
+  font-weight: 1000;
+  text-align: center;
+  color: white;
+}
+.underText{
+  color: white;
+}
+
 h1{
   font-family: 'Oswald', sans-serif;
 }
@@ -51,6 +133,11 @@ h1{
   background: white;
   border-width: 3px;
   font-weight: 400;
+  color: black;
+}
+
+.button-style.home{
+  border-color: black;
   color: black;
 }
 
