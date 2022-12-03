@@ -34,7 +34,7 @@ export default function QuizCollection() {
 
   return (
     <div className='quiz-grid'>
-      {allQuizComponents.map(quiz => <QuizComponent quizName={quiz.quizName} quizId={quiz.id} />)}
+      {allQuizComponents.map(quiz => <QuizComponent quizName={quiz.quizName} quizId={quiz.id}  />)}
     </div>
   )
 }

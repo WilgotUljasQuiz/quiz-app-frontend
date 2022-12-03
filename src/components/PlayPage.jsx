@@ -129,10 +129,11 @@ function PlayPage() {
       <div style={{position: "relative"}}>
         {!quizDone ?
           <div>
-            <h1 className='regularTitle'>Playing quiz: <u>{params.gameId}</u> </h1>
-            <div style={{display: "flex", justifyContent: "center"}}>
+            <div style={{display: "flex", justifyContent: "center", marginTop: "100px"}}>
               <div className='quiz-play-card'>
-                <h1>Quiz Name</h1>
+                <div style={{background: "#3498db", padding: "20px", borderRadius: "50px", width: "70%"}}>
+                  <h1 style={{color: "white"}}>{params.quizTitle}</h1>
+                </div>
                 <div style={{display:"flex", flexDirection: "column" ,height: "fit-content"}}>
                   
                   <h1 style={{color: "white"}} className='smallTitle normal'> <u>{activeQuestion.title}</u> </h1>

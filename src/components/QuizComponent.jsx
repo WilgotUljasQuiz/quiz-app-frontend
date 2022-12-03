@@ -9,7 +9,7 @@ export default function QuizComponent(props) {
   
   useEffect(() => {
     if(gameId != ""){
-      navigatePath(`/playquiz/${props.quizId}/${gameId}`)
+      navigatePath(`/playquiz/${props.quizId}/${gameId}/${props.quizName}`)
     }
   }, [gameId])
 
@@ -35,15 +35,11 @@ export default function QuizComponent(props) {
       const data = await response.json();
       console.log(await data);
       setGameId(await data);
-      play();
     }catch(err){
       console.log(err);
     }
   }
 
-  function play(){
-    
-  }
   return (
     <div className='quiz-card' onClick={createGame}>
       <div className='main-card'>
