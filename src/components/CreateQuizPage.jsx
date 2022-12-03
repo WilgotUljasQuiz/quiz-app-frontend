@@ -11,6 +11,8 @@ export default function CreateQuizPage() {
 
     const [allQuestions, setAllQuestions] = useState([]);
 
+    const [enterTitle, setEnterTitle] = useState(false);
+
     const [answerId, setAnswerId] = useState(0);
     const [answerList, setAnswerList] = useState([{
         title: "",
@@ -20,6 +22,11 @@ export default function CreateQuizPage() {
 
     const createQuiz = async(ev) => {
         ev.preventDefault();
+
+        if(title.length <= 0){
+            setEnterTitle(true);
+            return;
+        }
 
         const response = await fetch("https://localhost:7283/api/Quiz/createQuiz", {
             method: 'POST',
@@ -145,10 +152,40 @@ export default function CreateQuizPage() {
                         <div style={{display: "flex", flexDirection: "column"}}>
                             {quizId == "" ?
                                 <>
+                                    <div>
+                                        {enterTitle && 
+                                            
+                                            <p style={{color: "red"}}>Enter a Title</p>
+                                        }
+                                    </div>
                                     <div style={{marginBottom: "20px"}}>
                                         <input type="text" className='input-style' placeholder='Enter your Quiz Title' onChange={ev => setTitle(ev.target.value)}/>
                                     </div>
                                     <li onClick={createQuiz} className="button-style login smaller">Enter</li>
+                                    
+                                    <label for="caregory">Choose a Category:</label>
+                                    <select  name="categories" id="category">
+                                        <option value="other">Others</option>
+                                        <option value="sport">Sport</option>
+                                        <option value="fun">Fun</option>
+                                        <option value="music">Music</option>
+                                        <option value="science">Science</option>
+                                        <option value="tv">TV</option>
+                                        <option value="news">News</option>
+                                        <option value="generalknowledge">General Knowledge</option>
+                                        <option value="language">Language</option>
+                                        <option value="programming">Programming</option>
+                                        <option value="geography">Geography</option>
+                                        <option value="history">History</option>
+                                    </select>
+
+                                    <label for="difficulty">Choose a Difficulty:</label>
+                                    <select  name="difficulties" id="difficulty">
+                                        <option value="easy">Easy</option>
+                                        <option value="medium">Medium</option>
+                                        <option value="hard">Hard</option>
+                                        <option value="expert">Expert</option>
+                                    </select>
                                     
                                 </>
                                 : 
