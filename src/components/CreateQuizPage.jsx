@@ -117,6 +117,8 @@ export default function CreateQuizPage() {
             isCorrect: false,
             answerId: 0
         }]);
+
+        lastId = 1;
     }
 
     function addAnswer(){
