@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {useParams} from 'react-router-dom';
 import AnswerComponent from './AnswerComponent';
+import Canvas from './Canvas';
 
 function PlayPage() {
   const params = useParams();
@@ -124,57 +125,61 @@ function PlayPage() {
     setQuizDone(true);
   }
   return (
-    <div>
-      {!quizDone ?
-        <div>
-          <h1 className='regularTitle'>Playing quiz: <u>{params.gameId}</u> </h1>
-          <div style={{display: "flex", justifyContent: "center"}}>
-            <div className='quiz-play-card'>
-              <h1>Quiz Name</h1>
-              <div style={{display:"flex", flexDirection: "column" ,height: "fit-content"}}>
-                
-                <h1 style={{color: "white"}} className='smallTitle normal'> <u>{activeQuestion.title}</u> </h1>
-                <div style={{display: "flex", justifyContent:"center"}}>
-                  <div style={{display: "flex", flexDirection: "column"}}>
+    <div className='test'>
+      <div style={{position: "relative"}}>
+        {!quizDone ?
+          <div>
+            <h1 className='regularTitle'>Playing quiz: <u>{params.gameId}</u> </h1>
+            <div style={{display: "flex", justifyContent: "center"}}>
+              <div className='quiz-play-card'>
+                <h1>Quiz Name</h1>
+                <div style={{display:"flex", flexDirection: "column" ,height: "fit-content"}}>
                   
-                    {gotAnswers && 
-                      <>
-                        {activeQuestion.answers.map(answer => <AnswerComponent answer={answer} setSelectedAnswer={setSelectedAnswer} showAnswer={showAnswer} />)
-                        }
-                      </>
-                    }
+                  <h1 style={{color: "white"}} className='smallTitle normal'> <u>{activeQuestion.title}</u> </h1>
+                  <div style={{display: "flex", justifyContent:"center"}}>
+                    <div style={{display: "flex", flexDirection: "column"}}>
+                    
+                      {gotAnswers && 
+                        <>
+                          {activeQuestion.answers.map(answer => <AnswerComponent answer={answer} setSelectedAnswer={setSelectedAnswer} showAnswer={showAnswer} />)
+                          }
+                        </>
+                      }
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div style={{width: "100%", display: "flex", justifyContent: "center"}}>
-                <div style={{width: "fit-content", display: "flex", flexDirection: "column", alignItems: "center"}}>
-                  <div style={{width: "400px", height: "100%", display: "flex", justifyContent: "space-around", alignItems: "center", marginTop: "30px"}}>
-                    {/* <li className="button-style login smaller" onClick={decreasePage}>Previus Question</li> */}
-                    {showAnswer &&
-                      <>
-                        {answersPage == questionIds.length-1 ?
-                          <li style={{background: "orange"}} className="button-style login smaller" onClick={finishQuiz}>Finish Quiz</li>
-                          :
-                          <li className="button-style login smaller" onClick={incrementPage}>Next Question</li>
-                        }
-                      </>
-                    }
-                    
-                    
+                <div style={{width: "100%", display: "flex", justifyContent: "center"}}>
+                  <div style={{width: "fit-content", display: "flex", flexDirection: "column", alignItems: "center"}}>
+                    <div style={{width: "400px", height: "100%", display: "flex", justifyContent: "space-around", alignItems: "center", marginTop: "30px"}}>
+                      {/* <li className="button-style login smaller" onClick={decreasePage}>Previus Question</li> */}
+                      {showAnswer &&
+                        <>
+                          {answersPage == questionIds.length-1 ?
+                            <li style={{background: "orange"}} className="button-style login smaller" onClick={finishQuiz}>Finish Quiz</li>
+                            :
+                            <li className="button-style login smaller" onClick={incrementPage}>Next Question</li>
+                          }
+                        </>
+                      }
+                      
+                      
+                    </div>
+                    <p style={{color: "yellow"}}>{answerMessage}</p>
                   </div>
-                  <p style={{color: "yellow"}}>{answerMessage}</p>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        :
-        <div style={{marginTop: "100px"}}>
-          <h1>You Completed the Quiz!</h1>
-          <h2>You got {points}/{questionIds.length} Right!</h2>
-          <p style={{color: "green"}}>+{points*3} XP</p>
-        </div>
-      }
+          :
+          <div style={{marginTop: "100px"}}>
+            <h1>You Completed the Quiz!</h1>
+            <h2>You got {points}/{questionIds.length} Right!</h2>
+            <p style={{color: "green"}}>+{points*3} XP</p>
+          </div>
+        }
+      </div>
+      <canvasElement />
+      {/* <Canvas /> */}
     </div>
   )
 }
