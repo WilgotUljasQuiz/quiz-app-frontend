@@ -4,6 +4,8 @@ import QuizComponent from './QuizComponent';
 export default function UserPage() {
   const [userName, setUserName] = useState("");
   const [level, setLevel] = useState("");
+  const [createdAccountAt, setCreatedAccountAt] = useState("");
+
 
   const [allQuizComponents, setAllQuizComponents] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -11,7 +13,7 @@ export default function UserPage() {
   useEffect(() => {
     fetchMyQuizComponents();
     setUserName(localStorage.getItem("Username"));
-    fetchMyLevel();
+    fetchMyStats();
   }, [])
 
 
@@ -33,6 +35,7 @@ export default function UserPage() {
       if (response.status === 200) {
         console.log(data);
         setAllQuizComponents(data);
+        
       } else {
         alert(data);
       }
@@ -42,9 +45,9 @@ export default function UserPage() {
     }
   }
 
-  async function fetchMyLevel() {
+  async function fetchMyStats() {
     try {
-      const response = await fetch("https://localhost:7283/api/Quiz/getMyLevel", {
+      const response = await fetch("https://localhost:7283/api/Users/getMyStats", {
         method: 'GET',
         headers: {
           'Access-Control-Allow-Origin': '*',
@@ -57,7 +60,8 @@ export default function UserPage() {
       const data = await response.json();
       if (response.status === 200) {
         console.log(data);
-        setLevel(data);
+        setLevel(data.MyLevel);
+        setCreatedAccountAt(data.CreatedAccountAt)
       } else {
         alert(data);
       }
@@ -78,7 +82,7 @@ export default function UserPage() {
             </div>
             <div style={{ width: "1000px", display: "flex", justifyContent: "left", paddingLeft: "20px" }}>
               <div>
-                <p className='description-text underline'><b>Joined:</b> 18 months ago</p>
+                <p className='description-text underline'><b>Joined:</b>{createdAccountAt}</p>
                 <p className='description-text underline'><b>Quizes:</b> {allQuizComponents.length}</p>
                 <p className='description-text underline'><b>Level:</b> {level}</p>
               </div>
