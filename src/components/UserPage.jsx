@@ -44,7 +44,7 @@ export default function UserPage() {
 
   async function fetchMyLevel() {
     try {
-      const response = await fetch("https://localhost:7283/api/users/getMyLevel", {
+      const response = await fetch("https://localhost:7283/api/Quiz/getMyLevel", {
         method: 'GET',
         headers: {
           'Access-Control-Allow-Origin': '*',
