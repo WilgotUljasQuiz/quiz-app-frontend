@@ -101,7 +101,7 @@ export default function UserPage() {
               </div>
               :
               <div style={{display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:"40px"}} >
-                {allQuizComponents.map(quiz => <QuizComponent quizName={quiz.quizName} quizId={quiz.id} qui />)}
+                {allQuizComponents.map(quiz => <QuizComponent quizName={quiz.quizName} quizId={quiz.id} />)}
               </div>
             } 
           </div>
