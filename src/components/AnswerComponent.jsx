@@ -8,7 +8,7 @@ export default function AnswerComponent({answer, setSelectedAnswer, showAnswer})
         }
     }, [showAnswer])
   return ( 
-    <div className={clicked ? "answer-card clicked" : "answer-card"} style={{background: showAnswer && (answer.isCorrect ? "green" : "red")}} onClick={() =>{ 
+    <div className={clicked ? "answer-card clicked" : "answer-card"} style={{background: showAnswer && (answer.isCorrect ? "white" : "none")}} onClick={() =>{ 
         setSelectedAnswer(answer)
         setClicked(clicked ? false : true)
         }
