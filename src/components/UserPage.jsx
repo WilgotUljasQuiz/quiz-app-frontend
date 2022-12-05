@@ -38,13 +38,12 @@ export default function UserPage() {
       }
       setLoading(false);
     } catch (err) {
-      console.log(err.toString())
+      console.log(err)
     }
   }
 
   async function fetchMyLevel() {
     try {
-      setLoading(true);
       const response = await fetch("https://localhost:7283/api/users/getMyLevel", {
         method: 'GET',
         headers: {
@@ -62,9 +61,9 @@ export default function UserPage() {
       } else {
         alert(data);
       }
-      setLoading(false);
+     
     } catch (err) {
-      console.log(err.toString())
+      console.log(err)
     }
   }
 
