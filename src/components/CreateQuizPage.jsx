@@ -6,7 +6,6 @@ let lastId = 1;
 export default function CreateQuizPage() {
     const [title, setTitle] = useState("");
     const [quizId, setQuizId] = useState("");
-    // const [allAnswers, setAllAnswers] = useState();
     const [questionTitle, setQuestionTitle] = useState("")
 
     const [allQuestions, setAllQuestions] = useState([]);

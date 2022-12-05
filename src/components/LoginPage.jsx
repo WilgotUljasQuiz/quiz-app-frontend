@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
   const [loginMessage, setLoginMessage] = useState("")
@@ -10,11 +11,20 @@ function LoginPage() {
 
   const [loading, setLoading] = useState(false);
 
+  const navigate = useNavigate();
+  const navigatePath = (path) => navigate(`${path}`);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if(loginMessage == "Succes"){
+        navigatePath("/") 
+      }
+    }, 1000); 
+  }, [loginMessage]);
+
   const login = async (ev) => {
     ev.preventDefault();
-
     setLoading(true);
-
     try{
       const response = await fetch("https://localhost:7283/api/Users/login", {
         method: 'POST',
@@ -33,24 +43,18 @@ function LoginPage() {
       const data = await response.json();
       if(response.status === 200)
       {
-        console.log(data);
         localStorage.setItem("AccessToken", data);
         localStorage.setItem("Username", username);
-
-      }else{
-        alert(data)
       }
-
+      console.log(data);
+      
       setSucces(true)
       setLoginMessage("Succes")
-
     }catch (err){
       console.log(err)
       setSucces(false)
       setLoginMessage(err.toString())
     }
-
-    
     setUserName("");
     setPassword("");
     setLoading(false);

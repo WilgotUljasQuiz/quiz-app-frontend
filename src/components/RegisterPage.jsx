@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 function RegisterPage() {
   const [loginMessage, setLoginMessage] = useState("")
@@ -9,6 +10,17 @@ function RegisterPage() {
   const [password, setPassword] = useState("")
 
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+  const navigatePath = (path) => navigate(`${path}`);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if(loginMessage == "Succes"){
+        navigatePath("/login") 
+      }
+    }, 1000); 
+  }, [loginMessage]);
 
   const register = async (ev) => {
     ev.preventDefault();
