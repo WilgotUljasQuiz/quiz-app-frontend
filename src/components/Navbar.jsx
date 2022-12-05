@@ -25,7 +25,7 @@ export default function Navbar() {
             <h1 onClick={() => {
                 navigatePath("/") 
                 checkIfLoggedIn()
-            }} style={{userSelect: "none", cursor: "pointer"}}>Quiz App</h1>
+            }} style={{userSelect: "none", cursor: "pointer"}}>Pi-Quiz</h1>
             <div style={{display: "flex", gap: "20px"}}>
                 {!loggedIn ?
                     <>

@@ -43,7 +43,7 @@ export default function Home2() {
                         <QuizComponent /> */}
                         <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "500px"}}>
                             <div>
-                                <h1 className='bigTitle'>Quiz App</h1>
+                                <h1 className='bigTitle'>Pi-Quiz</h1>
                                 <p className='underText'>Create and play Quizes</p>
                             </div>
                         </div>
