@@ -21,7 +21,7 @@ export default function UserPage() {
   async function fetchMyQuizComponents() {
     try {
       setLoading(true);
-      const response = await fetch("https://localhost:7283/api/Quiz/getMyQuizzes", {
+      const response = await fetch("https://localhost:7283/api/Users/getMyQuizzes", {
         method: 'GET',
         headers: {
           'Access-Control-Allow-Origin': '*',
