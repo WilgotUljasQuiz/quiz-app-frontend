@@ -37,11 +37,8 @@ export default function Home2() {
         <div style={{ width: "100%" }}>
             <div className='top-background2' style={{ width: "100%", padding: 0, margin: 0 }}>
                 <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
-                    <div style={{ position: "relative", width: "fit-content", height: "500px",}}>
-                        {/* <QuizComponent />
-                        <QuizComponent />
-                        <QuizComponent /> */}
-                        <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "500px"}}>
+                    <div style={{ position: "relative", width: "fit-content", height: "fit-content",}}>
+                        <div className='mainHome' style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
                             <div>
                                 <h1 className='bigTitle'>Pi-Quiz</h1>
                                 <p className='underText'>Create and play Quizes</p>

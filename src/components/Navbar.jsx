@@ -37,21 +37,23 @@ export default function Navbar() {
                         </div>
                     </>
                     : <>
-                        <div>
-                            <li onClick={() => navigatePath("/playquizpage")} className="button-style login">Play Quiz</li>
-                        </div>
-                        <div>
-                            <li onClick={() => navigatePath("/createquiz")} className="button-style login">Create new Quiz</li>
-                        </div>
-                        <div>
-                            <li onClick={() => navigatePath("/user")} className="button-style login">My Profile</li>
-                        </div>
-                        <div>
-                        <li onClick={() => {
-                            localStorage.setItem("AccessToken", "");
-                            checkIfLoggedIn();
-                            navigatePath("/")
-                        }} className="button-style login logout">Log out</li>
+                        <div className='navbarLoggedInButtons'>
+                            <div>
+                                <li onClick={() => navigatePath("/playquizpage")} className="button-style login">Play Quiz</li>
+                            </div>
+                            <div>
+                                <li onClick={() => navigatePath("/createquiz")} className="button-style login">Create new Quiz</li>
+                            </div>
+                            <div>
+                                <li onClick={() => navigatePath("/user")} className="button-style login">My Profile</li>
+                            </div>
+                            <div>
+                            <li onClick={() => {
+                                localStorage.setItem("AccessToken", "");
+                                checkIfLoggedIn();
+                                navigatePath("/")
+                            }} className="button-style login logout">Log out</li>
+                            </div>
                         </div>
                     </>
                 }

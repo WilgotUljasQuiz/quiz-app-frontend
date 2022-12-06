@@ -1,0 +1,10 @@
+@media screen and (max-width: 1070px){
+    .mainHome{
+        height: 400px;
+    }
+}
+@media screen and (max-width: 670px){
+    .mainHome{
+        height: 300px;
+    }
+}

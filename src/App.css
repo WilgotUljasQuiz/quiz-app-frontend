@@ -305,6 +305,14 @@ h2{
   border-radius: 10px;
 }
 
+.navbarLoggedInButtons{
+  display: flex;
+}
+
+.mainHome{
+  height: 500px;
+}
+
 .answer-card{
   
   background: #3d54ad;
