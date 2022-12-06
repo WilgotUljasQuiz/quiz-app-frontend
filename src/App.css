@@ -71,7 +71,7 @@ html {
   height: 55px;
   color: white;
   padding: 10px;
-  transition: 0.2s;
+  transition: 0.3s;
 }
 .icon:hover{
   background: #EDF4FF;
