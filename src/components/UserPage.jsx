@@ -46,6 +46,7 @@ export default function UserPage() {
   }
 
   async function fetchMyStats() {
+    console.log("Hej")
     try {
       const response = await fetch("https://localhost:7283/api/Users/getMyStats", {
         method: 'GET',
@@ -59,9 +60,8 @@ export default function UserPage() {
 
       const data = await response.json();
       if (response.status === 200) {
-        console.log(data);
-        setLevel(data.MyLevel);
-        setCreatedAccountAt(data.CreatedAccountAt)
+        setLevel(data.myLevel);
+        setCreatedAccountAt(data.createdAccountAt)
       } else {
         alert(data);
       }
@@ -82,7 +82,7 @@ export default function UserPage() {
             </div>
             <div style={{ width: "1000px", display: "flex", justifyContent: "left", paddingLeft: "20px" }}>
               <div>
-                <p className='description-text underline'><b>Joined:</b>{createdAccountAt}</p>
+                <p className='description-text underline'><b>Joined:</b> {createdAccountAt}</p>
                 <p className='description-text underline'><b>Quizes:</b> {allQuizComponents.length}</p>
                 <p className='description-text underline'><b>Level:</b> {level}</p>
               </div>
